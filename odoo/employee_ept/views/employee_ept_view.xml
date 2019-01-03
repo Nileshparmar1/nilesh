@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <record id="employee_ept_action" model="ir.actions.act_window">
+            
+            <field name="name">Employee</field>
+            <field name="city">City</field>
+            <field name="salary">Salary</field>
+            
+            <field name="res_model">employee.ept</field>
+        	<field name="view_type">form</field>
+        	<field name="view_mode">tree,form</field>
+        	<field name="domain">[]</field>
+        	<field name="help" type="html">
+            	<header>
+        			<h1> Emipro Technologies Pvt(ltd) </h1>
+        		</header>
+            	<h1> To Visit Our Company <a href="http://www.emiprotechnologies.com">Click Here</a>...</h1>
+        	</field>
+        	
+        </record>
+		
+        <menuitem id="employee_ept_main_menu"
+                name="Employee" />
+                
+        <menuitem id="employee_ept_main" 
+        		parent="employee_ept_main_menu"
+                name="Employee info" />
+                
+        <menuitem id="employee_ept_add_employee"
+                  parent="employee_ept_main"
+                  name="Create New employee"
+                  action="employee_ept_action"  />
+        
+	</data>
+</odoo>
+
+

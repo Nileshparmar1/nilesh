@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+employee_ept_user_rights,Employee.ept.user.rights,employee_ept.model_employee_ept,base.group_public,1,1,1,1

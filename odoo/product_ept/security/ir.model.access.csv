@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_ept,product_ept,model_product_ept,base.group_public,1,1,1,1
+access_product_ept_category,product_ept_category,model_product_ept_category,base.group_public,1,1,1,1
