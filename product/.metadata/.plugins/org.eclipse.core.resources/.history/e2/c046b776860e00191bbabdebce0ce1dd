@@ -1,0 +1,17 @@
+{
+    'name': 'Marketing Employee',
+    'version': '1.0',
+    'sequence': 1,
+    'author':'Nilesh Parmar',
+    'category': 'Marketing Department Information',
+    'depends':['base'],
+    'data': [
+        
+        '/views/marketing_view.xml',
+        '/security/ir.model.access.csv'
+        
+            ],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

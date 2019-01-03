@@ -1,0 +1,13 @@
+{
+    'name':'product brand',
+    'version':'1.0',
+    'category':'product'
+    'summary':'no of product brand vailable',
+    'data':['views/product_brand_view.xml'],
+    'web':'www.emiprotechnologies.com',
+    'depends':['base'],
+    
+    'installcble':True,
+    'auto_install':False,
+    
+}

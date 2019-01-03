@@ -1,0 +1,10 @@
+Grep command in Unix/Linux is the short form of ‘global search for the regular expression’.
+
+The grep command is a filter that is used to search for lines matching a specified pattern and print the matching lines to standard output.
+
+:wq
+1 
+2 hii
+3 hello
+4 good morning
+5 good

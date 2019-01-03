@@ -1,0 +1,12 @@
+from odoo import models,fields
+class Employee_info(models.Model):
+    
+    _name='employee.info'
+    
+    name = fields.Char(string='Name')
+    last_name = fields.Char(string='Last Name')
+    age = fields.Integer(string='age')
+    
+
+    
+    

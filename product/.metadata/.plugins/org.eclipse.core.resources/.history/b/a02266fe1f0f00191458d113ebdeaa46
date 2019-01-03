@@ -1,0 +1,15 @@
+from odoo import models,fields
+import datetime
+
+class EmployeeInfo(models.Model):
+    
+    _name='marketing.employee.info.ept'
+    
+    name = fields.Char(string='Name',require=True,help="Name")
+    last_name = fields.Char(string='Last Name')
+    age = fields.Integer(string='age')
+    hire_date=fields.Datetime.to_string(string="date",datetime.datetime.now(),readonly=True)
+    
+
+    
+    

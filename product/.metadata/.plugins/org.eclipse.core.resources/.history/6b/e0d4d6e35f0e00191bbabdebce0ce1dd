@@ -1,0 +1,9 @@
+from odoo import models,fields
+
+class ProductBrand(models.Model):
+    name=fields.Char(string="name")
+    no_of_category=fields.Integer(string="No of Category")
+    description=fields.Html(string="Description")
+    active=fields.Boolean(string="Active")
+    logo=fields.Binary(string="Logo")
+    tagline=fields.Char(string="Tagline")

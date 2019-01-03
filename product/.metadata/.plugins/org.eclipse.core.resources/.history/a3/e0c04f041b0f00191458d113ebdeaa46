@@ -1,0 +1,1 @@
+from custom_addons.Marketing_employee_info.models import marketing_employee_info

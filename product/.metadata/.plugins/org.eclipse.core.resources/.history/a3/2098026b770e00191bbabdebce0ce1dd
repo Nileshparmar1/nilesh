@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+		<record id="product_ept_action" model="ir.actions.act_window">
+            <field name="name">Product</field>
+            <field name="res_model">product.ept</field>                          
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            
+		</record>
+		<record id="product_ept_view_form" model="ir.ui.view">
+			<field name="name">Products</field>
+			<field name="model">product.ept</field>
+			<field name="arch" type="xml">
+				<form>
+				<group>
+					<group>
+						<field name="name"/>
+						<field name="category"/>
+						<field name="price"/>
+						<field name="on_hand_quantity"/>
+						<field name="total_price"/>
+					</group>
+					<group>
+						<field name="description"/>
+						<field name="barcode"/>
+						<field name="image"/>
+					</group>
+				</group>
+				<group>
+					<field name="date"/>
+					<field name="issale"/>
+				</group>
+				</form>
+			</field>
+			
+		</record>    
+		<record id="product_ept_view_tree" model="ir.ui.view">
+			<field name="name">Products tree</field>
+			<field name="model">product.ept</field>
+			<field name="arch" type="xml">
+				<tree>
+						<field name="name"/>
+						<field name="category"/>
+						<field name="price"/>
+						<field name="on_hand_quantity"/>
+						<field name="total_price"/>
+						<field name="description"/>
+						<field name="barcode"/>
+						<field name="image"/>
+						<field name="date"/>
+						<field name="issale"/>
+				</tree>
+			</field>
+			
+		</record>      
+		<menuitem id="product_ept_main_menu"
+	            name="Product"/>
+	            
+		<menuitem id="products_ept_menu"
+				parent="product_ept_main_menu"
+	            name="Products"/>
+	            
+	    <menuitem id="product_ept_detail"
+	    		parent="products_ept_menu"
+	    		name="product Details"
+	    		action="product_ept_action"/>
+	    		
+	    <menuitem id="product_brand_main_menu"
+	 		name="Product Brand"/>
+	 		
+		<menuitem id="pruduct_brand_menu" 
+			parent="product_brand_main_menu" 
+			name="Brand" 
+			action="product_brand_action" />                   
+                                   	
+</odoo>

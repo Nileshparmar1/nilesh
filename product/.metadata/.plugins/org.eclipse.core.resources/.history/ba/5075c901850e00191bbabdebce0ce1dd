@@ -1,0 +1,9 @@
+class Employee_info:
+    _name='employee_info'
+    name = fields.Char(string='Name')
+    last_name = fields.Char(string='Last Name')
+    age = fields.CHAR(string='age')
+    
+
+    
+    

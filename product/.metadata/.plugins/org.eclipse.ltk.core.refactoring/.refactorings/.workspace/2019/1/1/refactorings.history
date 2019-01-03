@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;odoo_v12/custom_addons/Marketing_employee_info/views/marketing_view.xml&apos;" deleteContents="false" description="Delete resource &apos;odoo_v12/custom_addons/Marketing_employee_info/views/marketing_view.xml&apos;" element1="/odoo_v12/custom_addons/Marketing_employee_info/views/marketing_view.xml" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1546431421559"/>
+</session>

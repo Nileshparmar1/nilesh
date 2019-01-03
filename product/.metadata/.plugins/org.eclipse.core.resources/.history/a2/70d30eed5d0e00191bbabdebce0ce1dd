@@ -1,0 +1,7 @@
+{
+    'name':'product brand',
+    'version':'1.0',
+    'summary':'no of product brand vailable',
+    'data':['views/product_brand_view.xml']
+    
+}

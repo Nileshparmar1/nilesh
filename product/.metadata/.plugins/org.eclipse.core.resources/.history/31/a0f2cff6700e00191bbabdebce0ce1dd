@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="product_brand_action" model="ir.actions.act_window">
+			<field name="name">Product Brand </field>
+			<field name="res_model">product.brand.ept</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+	</record>
+	<menuitem id="product_brand_main_menu"
+	 		name="Product Brand"/>
+	 		
+	<menuitem id="pruduct_brand_menu" 
+			parent="product_brand_main_menu" 
+			name="Brand" 
+			action="product_brand_action" />
+	
+</odoo>

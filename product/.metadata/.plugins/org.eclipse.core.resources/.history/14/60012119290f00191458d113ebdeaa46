@@ -1,0 +1,20 @@
+from odoo import models,fields, api
+class ProductEpt(models.Model):
+    
+    _name='product.ept'
+    
+    @api.depends('price','on_hand_quantity')
+    def _get_total_price(self):
+        for i in self:
+            i.total=i.price*i.on_hand_quantity
+    
+    name=fields.Char(string="name",require=True)    
+    category = fields.Selection([(1, 'Stockable'), (2, 'Consumable'), (3, 'Service')],default=1,required=True)    
+    price=fields.Float(string="price")    
+    on_hand_quantity=fields.Integer(string="quantity") 
+    description=fields.Html(string="Description")
+    barcode=fields.Char(string="Barcode")   
+    image=fields.Binary(string="Product Image")
+    date = fields.Date(string="Date")
+    issale=fields.Boolean(string="salable")
+    total_price= fields.Integer(string='Total Price', compute='_get_total_price')

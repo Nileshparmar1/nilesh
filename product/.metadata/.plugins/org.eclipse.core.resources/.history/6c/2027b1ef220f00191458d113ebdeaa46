@@ -1,0 +1,16 @@
+from odoo import api,models,fields
+import datetime
+class ProductEpt(models.Model):
+    
+    _name='product.ept'
+    
+    name=fields.Char(string="name",require=True)    
+    category = fields.Selection([(1, 'Stockable'), (2, 'Consumable'), (3, 'Service')],default=1,required=True)    
+    price=fields.Float(string="price")    
+    on_hand_quantity=fields.Integer(string="quantity") 
+    description=fields.Html(string="Description")
+    barcode=fields.Char(string="Barcode")   
+    image=fields.Binary(string="Product Image")
+    date = fields.Date(string="Date")
+    total_price=fields.Float(string="Total Price")
+    issale=fields.Boolean(string="salable")

@@ -1,0 +1,108 @@
+postgresql:
+#connect to postgresql.
+
+sudo su postgres
+#start
+psql
+
+\du
+#list of user
+
+\l
+#list of database
+
+\c manufacture
+#connect to manufacture databse.
+
+\d manufacture
+# see the structure of the table.
+
+CREATE USER test WITH PASSWORD '123' CREATEDB;
+#create user with password and permission of create database.
+
+create table emp_info(
+ emp_id serial primary key,
+ name varchar(20),
+ dept varchar(10) not null,
+ city varchar(20) not null);
+#create table emp_info.
+
+insert into emp_info values(2,'j k','director','jamnagar'),(3,'mayur','ceo','rajkot');
+# insert records into emp_info table.
+
+select * from emp_info;
+show all records from emp_info table.
+
+select * from emp_info where city='rajkot';
+# show only records which city have rajkot.
+
+
+create table salary(
+emp_salary_id serial primary key,
+salary integer not null);
+
+
+create table increment(no integer,id serial references emp_info(emp_id),increment_date date);
+
+
+insert into increment values(1,1,'2011-05-01');
+
+
+#create salary table.
+
+insert into salary values(1,10000),(2,20000),(3,30000),(4,40000),(5,50000);
+#insert data into salary table.
+
+###############################################################################################
+				JOIN
+###############################################################################################
+
+select name,emp_id,salary,city from emp_info,salary where emp_info.emp_id=salary.emp_salary_id;
+				or
+select name,emp_id,salary,city from emp_info inner join salary on emp_info.emp_id=salary.emp_salary_id;
+
+#inner join where employee id are same.
+
+select emp_id,name,dept,city,salary from emp_info left join salary on emp_info.emp_id=salary.emp_salary_id;
+#left join on emp_info table.
+
+select emp_id,name,dept,city,salary from emp_info right join salary on emp_info.emp_id=salary.emp_salary_id;
+#right join on emp_info table.
+
+select emp_id,name,dept,city,salary from emp_info full outer join salary on emp_info.emp_id=salary.emp_salary_id;
+#full outer join on emp_info and salary table.
+
+create table product(product_id integer,item_id integer,item_name varchar(2),quantity integer);
+#create table with column product_id integer,item_id integer,item_name varchar(2),quantity integer.
+
+insert into product values(4,1,'samsung',10),(3,2,'lenovo',05),(2,3,'redmi',12),(2,1,'nokia',3),(2,4,'lg',7);
+#insert record into table
+ 
+alter table product alter column item_name type varchar(20);
+#update coulmn item_name size increase. 
+
+select p.product_id,i.item_id,i.item_name from product p inner join product i on i.item_id=p.product_id;
+
+#################################################################################################
+create table emp_birthday(birthday_id serial,no serial references emp_info(emp_id));
+#crete table increment with foreign key emp_info(emp_id)
+
+insert into increment values(1,1,'2011-05-01');
+insert into increment values(2,1,'2011-06-01');
+insert into increment values(2,1,'2011-07-01');
+insert into increment values(4,2,'2011-06-01');
+insert into increment values(5,2,'2011-07-01');
+insert into increment values(6,3,'2011-08-01');
+
+
+update increment set no=3 where id=1 and increment_date='2011-07-01';
+#update row id=1 and date='2011-07-01' set no=3
+
+select * from increment order by no;
+#set no in increment odrder.
+
+
+
+
+
+
