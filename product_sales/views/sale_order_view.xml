@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<record id="sale_order_ept_action" model="ir.actions.act_window">
+		<field name="name">Orders</field>
+		<field name="res_model">sale.order.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+	
+	<record id="product_brand_ept_view_tree" model="ir.ui.view">
+		<field name="name">tree view</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="partner_name_m2m" widget="many2many_tags" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="product_brand_ept_view_form" model="ir.ui.view">
+		<field name="name">form view</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+						<group>
+							<field name="partner_name_m2m" widget="many2many_tags" />
+						</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<menuitem id="product_sales_menu" 
+	parent="product_sales_main_menu" 
+	name="Order"/>		
+	
+	<menuitem id="sale_ept_menu"
+		parent="sales_order_menu" name="Orders"
+		action="sale_order_ept_action" />		
+
+</odoo>
