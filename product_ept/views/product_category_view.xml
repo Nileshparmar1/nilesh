@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="product_ept_category_action"
+		model="ir.actions.act_window">
+		<field name="name">Category</field>
+		<field name="res_model">product.ept.category</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<record id="product_ept_category_view_form" model="ir.ui.view">
+		<field name="name">Category form</field>
+		<field name="model">product.ept.category</field>
+		<field name="arch" type="xml">
+			<form>
+			<header>
+				<button name="%(products_ept_reports)d" type="action" string="Report"></button>
+			</header>
+				<sheet>
+				<div class="oe_button_box" name="button_box">
+					<button name="view_product" string="products" type="object" class="oe_stat_button" icon="fa-pencil-square-o">
+						<field name="count"></field>						
+					</button>
+				</div>
+					
+					<group>
+						<field name="name" />
+						<field name="no_of_brand" />
+						<field name="description" />
+						
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="product_ept_category_view_tree" model="ir.ui.view">
+		<field name="name">Category tree</field>
+		<field name="model">product.ept.category</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="no_of_brand" />
+				<field name="description" />
+			</tree>
+		</field>
+	</record>
+	
+	<record id="products_ept_reports"
+		model="ir.actions.act_window">
+		<field name="name">Products Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">product.report</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<menuitem id="products_ept_menu"
+		parent="product_ept_main_menu" name="Products" />
+
+	<menuitem id="menu_create_category_product"
+		parent="products_ept_menu" name="product category"
+		action="product_ept_category_action" />
+		
+	<menuitem id="product_report_ept_menu" parent="product_ept_main_menu"
+		name="Report" action="products_ept_reports"/>
+</odoo>             

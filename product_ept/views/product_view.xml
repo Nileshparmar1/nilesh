@@ -1,0 +1,176 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+	<!-- Form view -->
+	<record id="product_ept_view_form" model="ir.ui.view">
+		<field name="name">Products</field>
+		<field name="model">product.ept</field>
+		<field name="arch" type="xml">
+			<form>
+				<sheet>
+					<div class="oe_button_box" name="button box" modifiers="{}">
+						<button name="toggle_active" type="object"
+							class="oe_stat_button" icon="fa-archive" modifier="{}"
+							option="{}">
+							<field name="active" widget="boolean_button"
+								option='{"terminology":"archive"}' />
+						</button>
+					</div>
+					<field name="image" widget="image" class="oe_avatar" />
+					<div class="oe_title">
+						<label class="oe_edit_only" for="name" string="Product Name" />
+						<h1>
+							<field name="name" placeholder="Product Name" />
+						</h1>
+					</div>
+					<notebook>
+						<page name="general information" string="General Information">
+							<group>
+								<group>
+									<field name="type" />
+									<field name="product_ept_category_id"></field>
+									<field name="brand_id"/>
+									<field name="barcode" />
+									<field name="inherit_id"/>
+								</group>
+								<group>
+									<field name="date" />
+									<field name="issale" />
+									<field name="price" />
+									<field name="on_hand_quantity" />
+									<field name="total_price" />
+								</group>
+							</group>
+						</page>
+					</notebook>
+					<group string="Description">
+						<field name="description" nolabel="1"
+							placeholder="Product Details" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- Tree view -->
+
+	<record id="product_ept_view_tree" model="ir.ui.view">
+		<field name="name">Products tree</field>
+		<field name="model">product.ept</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="type" />
+				<field name="on_hand_quantity" />
+				<field name="price" />
+			</tree>
+		</field>
+	</record>
+
+	<!-- Pivot view -->
+
+	<record id="product_order_pivot" model="ir.ui.view">
+		<field name="name">Product pivot view</field>
+		<field name="model">product.ept</field>
+		<field name="arch" type="xml">
+			<pivot string="Available Product" display_quantity="True">
+				<field name="name" type="row" />
+				<field name="on_hand_quantity" type="measure" />
+			</pivot>
+		</field>
+	</record>
+
+	<!-- kanban view -->
+
+	<record id="resource_kanban_view" model="ir.ui.view">
+		<field name="name">Products kanban view</field>
+		<field name="model">product.ept</field>
+		<field name="arch" type="xml">
+			<kanban>
+				<templates>
+					<t t-name="kanban-box">
+						<div class="oe_kanban_global_click">
+							<div class="o_kanban_image">
+								<field name="image" widget="image" />
+							</div>
+							<div class="o_kanban_details">
+								<strong>
+									<field name="name" />
+								</strong>
+
+								<div>
+									<field name="price" />
+								</div>
+							</div>
+						</div>
+					</t>
+				</templates>
+			</kanban>
+		</field>
+	</record>
+	<!-- Graph view -->
+	<record id="product_order_graph" model="ir.ui.view">
+		<field name="name">Product graph view</field>
+		<field name="model">product.ept</field>
+		<field name="arch" type="xml">
+			<graph string="Available Product">
+				<field name="name" />
+				<field name="on_hand_quantity" type="measure" />
+			</graph>
+		</field>
+	</record>
+
+	<!-- calendar view -->
+
+	<record id="product_order_calender" model="ir.ui.view">
+		<field name = "name">Product calendar view</field>
+		<field name = "model">product.ept</field>
+		<field name = "priority" eval="2" />
+		<field name = "arch" type="xml">
+			<calendar string="Available Product" date_start="date">
+				<field name="name" />
+				<field name="on_hand_quantity" type="measure" />
+			</calendar>
+		</field>
+	</record>
+
+	<!-- search view -->
+	<record id="product_ept_search_view" model="ir.ui.view">
+		<field name = "name">product search</field>
+		<field name = "model">product.ept</field>
+		<field name = "arch" type="xml">
+			<search string="Search Product">
+				<filter name="active" string="archive"
+					domain="[('active','=',False)]"></filter>
+			</search>
+		</field>
+	</record>
+	
+	<!-- act_window is used for open wizard from Action -->  
+	<act_window name="Update Quantity"
+            res_model="product.quantity.wizard"
+            src_model="product.ept"
+            view_mode="form"
+            target="new"
+            multi="True"
+            key2="client_action_multi"
+            id="update_quantity_product_ept"
+	/>
+	
+	<record id="product_ept_data_action" model="ir.actions.act_window">
+		<field name="name">Product</field>
+		<field name="res_model">product.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+	</record>
+	
+	<!-- product menu -->
+
+	<menuitem id="product_ept_main_menu" name="Product" />
+
+	<menuitem id="products_ept_menu"
+		parent="product_ept_main_menu" name="Products" />
+	
+	<menuitem id="product_ept_detail" parent="products_ept_menu"
+		name="product" action="product_ept_data_action" />
+		
+</odoo>

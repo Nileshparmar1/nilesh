@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="products_quantity_wizard_form_view">
+        <field name="name">products_quantity</field>
+        <field name="model">product.quantity.wizard</field>
+        <field name="arch" type="xml">
+            <form name="Update Quantity">
+                <group>
+                    <field name="quantity"/>
+                </group>
+                <footer>
+                	<button name="update_quantity" type="object" string="Apply"></button>
+                	<button string="Cancel" special="Cancel"></button>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

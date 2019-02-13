@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="products_report_wizard_form_view">
+        <field name="name">products_report_wizard_form_view</field>
+        <field name="model">product.report</field>
+        <field name="arch" type="xml">
+            <form name="Generate Report">
+                <group>
+                    <field name="product_category_id"/>
+                </group>
+                <footer>
+                    <button name="generate_report" string="Download Report" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

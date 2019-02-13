@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_ept_user,Product.ept.user,model_product_ept,,1,1,1,1
+access_product_ept_category_user,Product.ept.category.user,model_product_ept_category,base.group_erp_manager,1,1,1,1
+access_product_ept_category_user,Product.ept.category.user,model_product_ept_category,sales_team.group_sale_salesman_all_leads,1,1,1,1
+access_product_ept_manager,Product.ept.manager,model_product_ept,,1,1,1,1
