@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sale_report_ept__graph" model="ir.ui.view">
+		<field name = "name">sale.report.graph</field>
+		<field name = "model">sale.report.ept</field>
+		<field name = "arch" type="xml">
+			<graph string="Sales Analysis" type="pie">
+				<field name="confirmation_date" type="row" interval="day"/>
+				<field name="amount_total" type="measure"/>
+			</graph>
+		</field>
+	</record>
+	
+	<record id="sale_report_ept_action" model="ir.actions.act_window">
+		<field name="name">Sale Report</field>
+		<field name="res_model">sale.report.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">graph</field>
+	</record>
+	
+	<menuitem id="sale_report_ept_menu" parent="product_sales_menu"
+		name="Report" action="sale_report_ept_action"/>
+</odoo>

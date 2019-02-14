@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<report 
+	    id="action_report_saleorder"
+	    string="Quotation / Order"
+	    model="sale.order.ept" 
+	    report_type="qweb-pdf"
+	    file="product_sales.report_saleorder" 
+	    name="product_sales.report_saleorder"
+	    print_report_name="'Sale Order - %s' % (object.name)"/>
+	    <!-- paperformat="product_sales.sale_order_paper_format" -->
+
+    <record id="action_report_saleorder" model="ir.actions.report">
+    	<field name="paperformat_id" ref="product_sales.sale_order_paper_format"/>
+    </record>
+</odoo>

@@ -1,43 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	
-	<record id="sale_order_ept_action" model="ir.actions.act_window">
-		<field name="name">Orders</field>
-		<field name="res_model">sale.order.ept</field>
-		<field name="view_type">form</field>
-		<field name="view_mode">tree,form</field>
-	</record>
-	
-	<record id="product_brand_ept_view_tree" model="ir.ui.view">
-		<field name="name">tree view</field>
-		<field name="model">sale.order.ept</field>
-		<field name="arch" type="xml">
-			<tree>
-				<field name="partner_name_m2m" widget="many2many_tags" />
-			</tree>
-		</field>
-	</record>
-
-	<record id="product_brand_ept_view_form" model="ir.ui.view">
-		<field name="name">form view</field>
+	<record id="view_sale_order_form" model="ir.ui.view">
+		<field name="name">sale.order.form</field>
 		<field name="model">sale.order.ept</field>
 		<field name="arch" type="xml">
 			<form>
+				<header>
+					<button name="action_generate_report" string="Report" type="object" />
+					<button name="action_confirm" type="object" string="Confirm" attrs="{'invisible':[('state','not in',['draft'])]}"/>
+					<button name="action_cancel" type="object" string="Cancel" states="draft,sent,sale"/>
+					<button name="action_quotation" type="object" string="set as quotation" states="cancel"/>
+					<button name="action_done" type="object" string="Lock" states="sale" />
+					<button name="action_unlock" type="object" string="Unlock" states="done"/>
+					<button name="print_saleorder" type="object" string="Print" states="sent,sale"/>
+					<field name="state" widget="statusbar" statusbar_visible="draft,sale"/>
+				</header>
 				<sheet>
+					<div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+					<group>
 						<group>
-							<field name="partner_name_m2m" widget="many2many_tags" />
+							<field name="partner_id" />
+							<field name="date" />
 						</group>
+						<group>
+							<field name="confirmation_date" attrs="{'invisible':[('state','in',['cancel','draft'])]}"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Order Lines" name="order_lines">
+							<field name="order_line">
+								<tree editable="bottom">
+									<field name="product_id" />
+									<field name="product_uom_qty"
+										sum="Total Ordered Quantity" />
+									<field name="price_unit" />
+									<field name="price_subtotal"/>
+								</tree>
+							</field>
+							<group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"/>
+                            </group>
+						</page>
+					</notebook>
 				</sheet>
 			</form>
 		</field>
 	</record>
-
-	<menuitem id="product_sales_menu" 
-	parent="product_sales_main_menu" 
-	name="Order"/>		
 	
-	<menuitem id="sale_ept_menu"
-		parent="sales_order_menu" name="Orders"
-		action="sale_order_ept_action" />		
+	<record id="view_sale_order_tree" model="ir.ui.view">
+		<field name="name">sale.order.tree</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+		<tree decoration-info="state=='draft'" decoration-muted="state=='cancel'" decoration-success="state=='sale'">
+			<field name="name" string="Order No"/>
+			<field name="partner_id" />
+			<field name="date" />
+			<field name="amount_total" sum="total amount"/>
+			<field name="state"/>
+		</tree>
+		</field>
+	</record>
+	<record id="view_sale_calendar" model="ir.ui.view">
+		<field name="name">sale.order.calendar</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+		<calendar  date_start="date" color="state">
+			<field name="partner_id" />
+			<field name="amount_total"/>
+		</calendar>
+		</field>
+	</record>
+	<record id="view_sale_graph" model="ir.ui.view">
+		<field name="name">sale.order.calendar</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+		<graph>
+			<field name="partner_id" />
+			<field name="amount_total" type="measure"/>
+		</graph>
+		</field>
+	</record>
+	<record id="view_sale_order_pivot" model="ir.ui.view">
+		<field name="name">sale.order.tree</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+		<pivot>
+			<field name="date" type="row"/>
+			<field name="amount_total" type="measure"/>
+		</pivot>
+		</field>
+	</record>
 
+					<!-- sale Quotation ept -->
+		
+	<record id="view_sale_quotation_form" model="ir.ui.view">
+		<field name="name">sale.quotation.form</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+			<form>
+				<header>
+					<button name="action_confirm" type="object" string="Confirm" attrs="{'invisible':[('state','not in',['draft'])]}"/>
+					<button name="action_cancel" type="object" string="Cancel" states="draft,sent,sale"/>
+					<button name="action_quotation" type="object" string="set as quotation" states="cancel"/>
+					<button name="action_done" type="object" string="Lock" states="sale" />
+					<button name="action_unlock" type="object" string="Unlock" states="done"/>
+					<field name="state" widget="statusbar" statusbar_visible="draft,sale"/>
+				</header>
+				<sheet>
+					<div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+					<group>
+						<group>
+							<field name="partner_id" />
+							<field name="date" />
+							<field name="confirmation_date" attrs="{'invisible':[('state','in',['cancel','draft'])]}"/>
+						</group>
+						<field name='partner_id'/>
+					</group>
+					<notebook>
+						<page string="Order Lines" name="order_lines">
+							<field name="order_line">
+								<tree editable="bottom">
+									<field name="product_id" />
+									<field name="product_uom_qty"
+										sum="Total Ordered Quantity" />
+									<field name="price_unit" />
+									<field name="price_subtotal"/>
+								</tree>
+							</field>
+							<group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"/>
+                            </group>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	
+	<record id="view_sale_Quotation_tree" model="ir.ui.view">
+		<field name="name">sale.quotation.tree</field>
+		<field name="model">sale.order.ept</field>
+		<field name="arch" type="xml">
+		<tree decoration-info="state=='draft'" decoration-muted="state=='cancel'" decoration-success="state=='sale'">
+			<field name="name" string="Order No"/>
+			<field name="partner_id" />
+			<field name="date" />
+			<field name="amount_total" sum="total amount"/>
+			<field name="state"/>
+		</tree>
+		</field>
+	</record>
+		
+	<record id="sale_order_ept_action" model="ir.actions.act_window">
+		<field name="name">Orders</field>
+		<field name="res_model">sale.order.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form,calendar,pivot,graph</field>
+		<field name="domain">[('state','=','sale')]</field>
+	</record>
+	
+	<record id="sale_quotation_ept_action" model="ir.actions.act_window">
+		<field name="name">Quotation</field>
+		<field name="res_model">sale.order.ept</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="view_id" ref="product_sales.view_sale_Quotation_tree"/>
+	</record>
+		
+	<menuitem id="product_sales_menu"
+		parent="product_sales_main_menu" name="Order" />
+
+	<menuitem id="sale_order_ept_menu" parent="product_sales_menu"
+		name="Orders" action="sale_order_ept_action" />
+	
+	<menuitem id="sale_quotation_ept_menu" parent="product_sales_menu"
+		name="Quotation" action="sale_quotation_ept_action"/>	
 </odoo>

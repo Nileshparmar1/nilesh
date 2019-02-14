@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sale_order_paper_format" model="report.paperformat">
+		<field name="name">Sale Order</field>
+		<field name="default" eval="True"/>
+		<field name="format">custom</field>
+		<field name="page_height">200</field>
+		<field name="page_weidth">150</field>
+		<field name="orientation">Landscape</field>
+		<field name="margin_top">5</field>
+		<field name="margin_bottom">5</field>
+		<field name="margin_left">5</field>
+		<field name="margin_right">5</field>
+		<field name="header_line" eval="False"/>
+		<field name="header_spacing">3</field>
+		<field name="dpi">80</field>
+	</record>
+</odoo>

@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_partner_ept_user,partner.ept,model_partner_ept,,1,1,1,1
-access_sale_order_user,sale.order.ept,model_sale_order_ept,,1,1,1,1
+access_sale_order_user,sale_order_ept,model_sale_order_ept,,1,1,1,1
+access_sale_order_line_user,sale_order_line_ept,model_sale_order_line_ept,,1,1,1,1
+access_partner_ept_user,partner_ept,model_partner_ept,,1,1,1,1
+access_sale_report_ept,sale_report_ept,model_sale_report_ept,,1,1,1,1
